@@ -5,15 +5,12 @@ A Python test suite to test the functionality of the corresponding slcsp.py
 script for the SLCSP Ad Hoc homework exercise found here:
 https://homework.adhoc.team/slcsp/
 
-
 REQUIREMENTS:
-
 - Python 3.7+
 
 There is no need to install any additional modules or setup a virtual
 environment.  This test suite is entirely self-contained and contains zero
 external dependencies.
-
 
 HOW TO USE THIS TEST SUITE:
 

@@ -1,7 +1,7 @@
 # SLCSP INTERVIEW EXERCISE
 
 This is my solution for the Ad Hoc SLCSP - Second Lowest Cost Silver Plan -
-coding exericse, written in Python.
+coding exercise, written in Python.
 
 
 ## QUICK SETUP AND USAGE INSTRUCTIONS
@@ -28,4 +28,4 @@ python tests.py
 ```
 
 For more detailed instructions and information behind the implementation
-approach, please see the COMMENTS file.
+approach, please see the COMMENTS.md file.

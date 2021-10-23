@@ -16,16 +16,16 @@ download Python from the Python homepage, please follow the setup instructions
 in the documentation (https://docs.python.org/3/using/index.html) for the
 version you downloaded for your specific operating system.
 
-You can also leverage a tool like PyEnv (https://github.com/pyenv/pyenv) - or
+You can also leverage a tool like pyenv (https://github.com/pyenv/pyenv) - or
 pyenv-win for Windows (https://github.com/pyenv-win/pyenv-win) - to help manage
 Python versions on your system without disrupting your operating system's
 default installation.  Please see the respective repositories for installation
 and usage instructions of these tools.
 
-Once you have Python installed, there is no other setup needed.  This script is
-entirely self-contained and uses modules only found in the standard library.
-There are no external dependencies to download and manage and no virtual
-environments to configure and manage.
+Once you have Python installed, there is no other setup needed.  This script and
+its tests are entirely self-contained and uses modules only found in the Python
+standard library.  There are no external dependencies to download and manage and
+no virtual environments to configure and manage.
 
 
 ## DETAILED SCRIPT SETUP AND USAGE INSTRUCTIONS
@@ -52,8 +52,8 @@ your operating systems unarchiving utility to do this and extract the files in
 the same directory.  This will preserve the directory structure needed to
 properly run everything.
 
-With everything in place in the directory you have copied everything to, you can
-now run the script with the following command:
+With everything in place in the directory you have copied all of the files into,
+you can now run the script with the following command:
 
 ```
 python slcsp.py
@@ -88,11 +88,10 @@ a larger production system, I may have reached for a couple of other things to
 bolster its robustness, particularly with testing.
 
 Additionally, I may have implemented this a little differently, such as creating
-classes for data objects where state needed to be managed if necessary and
-providing more flexibility for customization and accounting for a more general
-use case: e.g., allowing a user to provide one or more plan levels to calculate
-different kinds of plan rates for a zipcode, or writing the output to a file or
-somewhere else.
+classes for data objects if state needed to be managed, or providing more
+flexibility for customization and accounting for a more general use case (e.g.,
+allowing a user to provide one or more plan levels to calculate different kinds
+of plan rates for a zipcode, or writing the output to a file or somewhere else.
 
 In the case of what is essentially an ETL (Extract-Transform-Load) exercise
 though, I felt that a few hardcoded values based on the specific exercise
@@ -101,7 +100,7 @@ the quickest and most concise way to implement a solution for this exercise and
 fulfill the desired requirements.
 
 
-### Retrieving and setting the header row fields in the original slcsp.csv input
+### Retrieving and saving the header row fields in the original slcsp.csv input
 
 The `csv.DictReader.fieldnames` public property
 (https://docs.python.org/3/library/csv.html#csv.DictReader)
@@ -110,7 +109,8 @@ manager on Windows) where you cannot copy and store its values, even when
 leveraging `copy.deepcopy()`.
 
 In the `load_slcsp_csv()` method, all I wanted to do is this before looping
-through each record in the file:
+through each record in the file to retain the original field names of the input
+file:
 
 ```python
 SLCSP_OUTPUT_FIELD_NAMES = slcsp_reader.fieldnames

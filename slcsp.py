@@ -5,15 +5,12 @@ A Python script to retrieve the second lowest cost silver plan for a set of
 zipcodes based on the SLCSP Ad Hoc homework exercise found here:
 https://homework.adhoc.team/slcsp/
 
-
 REQUIREMENTS:
-
 - Python 3.7+
 
 There is no need to install any additional modules or setup a virtual
 environment.  This script is entirely self-contained and contains zero external
 dependencies.
-
 
 HOW TO USE THIS SCRIPT:
 
@@ -23,8 +20,8 @@ directory that you have placed this script.
 """
 
 
-import decimal
 import csv
+import decimal
 import re
 import sys
 
@@ -60,7 +57,8 @@ def filter_plan_metal_level(plan, desired_metal_level):
     - An insurance plan dictionary
     - A desired metal level to check for
 
-    Returns True if the insurance plan matches the desired metal, False if not.
+    Returns True if the insurance plan matches the desired metal level, False if
+    not.
     """
 
     if desired_metal_level.fullmatch(plan['metal_level']) is not None:
@@ -82,7 +80,7 @@ def load_plans_csv(csv_file_path):
     We do not need the Plan ID for this, either, so that information is
     ignored as well.
 
-    During the initial load, we simply take in all of the data that we need.
+    During the initial load, we simply take in all of the data that we do need.
     There is a separate method to clean the data and remove duplicate values to
     simplify the checks for a second lowest cost rate.
     
@@ -141,10 +139,10 @@ def load_zips_csv(csv_file_path):
     for this exercise to determine the rate areas or rates, so we ignore those
     to keep the dictionary as small as possible.
 
-    During the initial load we take in all of the data that we need.  There is a
-    separate method to clean the data and remove duplicate rate areas for each
-    zipcode to make sure we're accurately counting how many rate areas a zipcode
-    appears in.
+    During the initial load we take in all of the data that we do need.  There
+    is a separate method to clean the data and remove duplicate rate areas for
+    each zipcode to make sure we're accurately counting how many rate areas a
+    zipcode appears in.
 
     Dictionary structure:
 
@@ -172,7 +170,7 @@ def load_zips_csv(csv_file_path):
 
         # Loop through each zipcode, set the zipcode as the dictionary key, and
         # append all rate areas that match the zipcode to its corresponding
-        # list as tuples of state and rate area - (state, rate area)
+        # list as tuples of state and rate area - (state, rate area).
         for zipcode in zipcode_reader:
             zipcode_key = zipcode['zipcode']
 
@@ -198,7 +196,7 @@ def load_slcsp_csv(csv_file_path):
     Returns a list of zipcodes.
 
     This is the file that is used to drive the processing for all of the second
-    lowest cost silver plan that are desired with the given zipcodes.  It also
+    lowest cost silver plan that are desired with its given zipcodes.  It also
     provides the structure and order we need to use when outputting the final
     result back to STDOUT (the console/shell).
 
@@ -287,7 +285,7 @@ def retrieve_slcsp_for_zipcode(
 
     # Make sure the zipcode is a string.
     zipcode = str(zipcode)
-    
+
     # Check that the zipcode is in the proper 5 digit format; if not, return an
     # empty string as we cannot lookup the zipcode.
     if EXPECTED_ZIPCODE_FORMAT.fullmatch(zipcode) is None:
@@ -299,7 +297,7 @@ def retrieve_slcsp_for_zipcode(
 
     # If the zipcode is present in no rate areas or more than 1 rate area, we
     # cannot accurately determine the rate area.  We must return an empty string
-    # for the SLCSP rate in its place.
+    # for the SLCSP rate in this case.
     if len(zipcode_rate_areas) != 1:
         return NO_RATE_VALUE
 
@@ -353,8 +351,8 @@ def prepare_slcsp_output(
     prepared_slcsp_output = OrderedDict()
 
     # Retrieve the second lowest cost silver plan rates for each zipcode in the
-    # original dataset and place it in a dictionary to prepare it for final
-    # output.
+    # original dataset and place it in a dictionary with its matching rate to
+    # prepare it for final output.
     for zipcode in slcsp_zipcodes:
         rate = retrieve_slcsp_for_zipcode(
             zipcode,
