@@ -103,7 +103,7 @@ fulfill the desired requirements.
 
 ### Retrieving and setting the header row fields in the original slcsp.csv input
 
-The csv.DictReader.fieldnames public property
+The `csv.DictReader.fieldnames` public property
 (https://docs.python.org/3/library/csv.html#csv.DictReader)
 has a weird quirk with it (at least when working with a CSV file in a context
 manager on Windows) where you cannot copy and store its values, even when
